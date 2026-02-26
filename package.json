@@ -1,0 +1,26 @@
+{
+  "name": "atelieapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "commit": "cz"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/node": "^25.3.0",
+    "eslint": "^8.57.1",
+    "prisma": "^7.4.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.4.1",
+    "dotenv": "^17.3.1",
+    "fastify": "^5.7.4"
+  }
+}

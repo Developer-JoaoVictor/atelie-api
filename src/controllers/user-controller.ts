@@ -13,6 +13,18 @@ export class UserController {
 
     const { name, email, password } = userSchema.parse(request.body)
 
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    })
+
+    if (userExists) {
+      return reply.status(409).send({
+        message: 'E-mail já cadastrado',
+      })
+    }
+
     const password_hash = await hash(password, 6)
 
     await prisma.user.create({
@@ -23,6 +35,8 @@ export class UserController {
       },
     })
 
-    return reply.status(201).send('usuário criado com sucesso!')
+    return reply.status(201).send({
+      message: 'Usuário criado com sucesso!',
+    })
   }
 }

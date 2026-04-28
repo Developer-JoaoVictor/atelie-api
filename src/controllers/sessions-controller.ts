@@ -20,7 +20,7 @@ export class SessionsController {
     })
 
     if (!user) {
-      return reply.status(409).send({
+      return reply.status(401).send({
         message: 'Credenciais inválidas',
       })
     }
@@ -28,7 +28,7 @@ export class SessionsController {
     const passwordIsValid = await compare(password, user.password_hash)
 
     if (!passwordIsValid) {
-      return reply.status(409).send({
+      return reply.status(401).send({
         message: 'Credenciais inválidas',
       })
     }
@@ -38,6 +38,6 @@ export class SessionsController {
       expiresIn: '7d',
     })
 
-    return reply.send({ token })
+    return reply.status(200).send({ token })
   }
 }

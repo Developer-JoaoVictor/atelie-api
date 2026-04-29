@@ -16,4 +16,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.post('/clients', { preHandler: authenticated }, (request, reply) => {
     clientsController.create(request, reply)
   })
+  app.get('/clients', { preHandler: authenticated }, (request, reply) => {
+    clientsController.list(request, reply)
+  })
 }

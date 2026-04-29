@@ -1,8 +1,8 @@
-import { FastifyRequest, FastifyReply } from 'fastify'
 import z from 'zod'
-import { prisma } from '../lib/prisma'
-import { compare } from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { compare } from 'bcryptjs'
+import { prisma } from '../lib/prisma'
+import { FastifyRequest, FastifyReply } from 'fastify'
 
 export class SessionsController {
   async create(request: FastifyRequest, reply: FastifyReply) {

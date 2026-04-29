@@ -1,7 +1,7 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
 import z from 'zod'
-import { prisma } from '../lib/prisma'
 import { hash } from 'bcryptjs'
+import { prisma } from '../lib/prisma'
+import { FastifyReply, FastifyRequest } from 'fastify'
 
 export class UserController {
   async create(request: FastifyRequest, reply: FastifyReply) {

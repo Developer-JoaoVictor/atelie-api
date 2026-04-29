@@ -1,6 +1,6 @@
-import { FastifyRequest, FastifyReply } from 'fastify'
 import z from 'zod'
 import { prisma } from '../lib/prisma'
+import { FastifyRequest, FastifyReply } from 'fastify'
 
 export class ClientsController {
   async create(request: FastifyRequest, reply: FastifyReply) {
@@ -20,5 +20,18 @@ export class ClientsController {
     })
 
     return reply.status(201).send({ client })
+  }
+
+  async list(request: FastifyRequest, reply: FastifyReply) {
+    const clients = await prisma.client.findMany({
+      where: {
+        user_id: request.user.id,
+      },
+      orderBy: {
+        created_at: 'desc',
+      },
+    })
+
+    return reply.status(200).send({ clients })
   }
 }

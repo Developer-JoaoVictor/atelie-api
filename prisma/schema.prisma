@@ -25,7 +25,22 @@ model Client {
   user_id    String
   created_at DateTime @default(now())
 
-  user User @relation(fields: [user_id], references: [id])
+  user   User    @relation(fields: [user_id], references: [id])
+  orders Order[]
 
   @@map("clientes")
+}
+
+model Order {
+  id            String   @id @default(uuid())
+  description   String
+  price         Float
+  status        String
+  delivery_date DateTime
+  client_id     String
+  created_at    DateTime @default(now())
+
+  client Client @relation(fields: [client_id], references: [id])
+
+  @@map("orders")
 }

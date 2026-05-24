@@ -39,4 +39,19 @@ export class OrdersController {
 
     return reply.status(201).send(order)
   }
+
+  async list(request: FastifyRequest, reply: FastifyReply) {
+    const orders = await prisma.order.findMany({
+      where: {
+        client: { user_id: request.user.id },
+      },
+      include: {
+        client: {
+          select: { id: true, name: true },
+        },
+      },
+    })
+
+    return reply.status(200).send(orders)
+  }
 }
